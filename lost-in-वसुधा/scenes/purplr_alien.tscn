@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbbit1gumqbss"]
+
+[ext_resource type="Texture2D" uid="uid://d4cd4bfa54pqy" path="res://asserts/sprites/alien purple.png" id="1_s6v1h"]
+[ext_resource type="PackedScene" uid="uid://hrt784nchv5q" path="res://scenes/killzone.tscn" id="2_ljg3p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpk5k"]
+atlas = ExtResource("1_s6v1h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awgql"]
+atlas = ExtResource("1_s6v1h")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmfa4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpk5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awgql")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvg57"]
+size = Vector2(17.1908, 6.10465)
+
+[node name="purple_alien" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wmfa4")
+autoplay = "default"
+frame_progress = 0.530686
+
+[node name="killzone" parent="." instance=ExtResource("2_ljg3p")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(16.5723, -5.49418)
+shape = SubResource("RectangleShape2D_lvg57")
+
+[node name="RayCast_right" type="RayCast2D" parent="."]
+position = Vector2(-4, -4)
+target_position = Vector2(8, 0)
+
+[node name="RayCast_left" type="RayCast2D" parent="."]
+position = Vector2(-4, -4)
+target_position = Vector2(-10, 0)
